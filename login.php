@@ -3,26 +3,21 @@ session_start();
 if (isset($_GET['do'])) {
     unset($_SESSION['user_login']);
     session_destroy();
-} elseif (isset($_SESSION['user_login'])) {
+} else if (isset($_SESSION['user_login'])) {
     header("location: index.php");
 }
-// if (isset($_POST['login'])) {}
-// require("class/user.php");
 
 // require_once("koneksi.php");
-
 // if (isset($_POST['login'])) {
 //     if (empty($_POST['username']) && empty($_POST['password'])) {
 //         echo '<script> alert("isilah username dan password anda!")</script>';
 //     } else {
 //         $username = mysqli_real_escape_string($connect, $_POST['username']);
 //         $password = mysqli_real_escape_string($connect, $_POST['password']);
-
 //         $sql = "SELECT * FROM users where username = '$username'";
 //         $result = mysqli_query($connect, $sql);
 //         $row = mysqli_fetch_array($result);
 //         $real_password = "";
-
 //         if ($real_password == $password) {
 //             header("location:index.php");
 //             echo '<script>alert("Login berhasil!")</script>';
