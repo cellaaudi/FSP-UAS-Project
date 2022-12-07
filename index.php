@@ -22,7 +22,7 @@ $resmemes = $meme->getMemes();
 
 <body>
     <div id="container">
-        <section>
+        <section id="memes">
             <?php
             foreach ($resmemes as $arr) {
 
