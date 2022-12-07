@@ -47,7 +47,7 @@ if (isset($_GET['do'])) {
     <div id="container">
         <div id="wrapper">
             <div>LOG IN</div>
-            <form action="login_process.php" method="post" id="formLogin">
+            <form action="" method="post" id="formLogin">
                 <div class="login"><input type="text" placeholder="username" name="username"></div>
                 <div class="login"><input type="password" placeholder="password" name="password"></div>
                 <div class="login"><input type="submit" value="Login" name="login"></div>
