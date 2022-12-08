@@ -72,12 +72,15 @@ br {
     }
 
     #memes {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        grid-template-rows: auto;
         max-width: 648px;
     }
 
     .card {
-        float: left;
-        max-width: 50%;
+        /* float: left; */
+        max-width: 100%;
         margin-left: 12px;
         margin-right: 12px;
     }
@@ -89,11 +92,14 @@ br {
     }
 
     #memes {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        grid-template-rows: auto;
         max-width: 1296px;
     }
 
     .card {
-        float: left;
-        max-width: 23%;
+        /* float: left; */
+        max-width: 100%;
     }
 }
