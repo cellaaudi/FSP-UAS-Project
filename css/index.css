@@ -66,7 +66,8 @@ br {
     padding: 8px 16px 12px 8px;
 }
 
-@media all and (min-width: 600px) {
+/* Landscape Mobile Phone and Portrait Tablet */
+@media all and (min-width: 576px) {
     #container {
         max-width: 648px;
     }
@@ -86,7 +87,8 @@ br {
     }
 }
 
-@media all and (min-width: 768px) {
+/* Landscape Tablet and Laptop */
+@media all and (min-width: 992px) {
     #container {
         max-width: 1296px;
     }
