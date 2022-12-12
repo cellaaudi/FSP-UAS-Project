@@ -47,7 +47,7 @@ $resPagination = $meme->pagination($p);
                 <?php
                 for ($i = 1; $i <= $meme->getTotalPage(); $i++) {
                 ?>
-                    <a href="" class="page"><?= $i ?></a>
+                    <a href="" class="page <?php if ($i == 1) echo 'active' ?>"><?= $i ?></a>
                 <?php
                 }
                 ?>
