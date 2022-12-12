@@ -7,6 +7,17 @@
 require("class/meme.php");
 $meme = new Meme();
 $resmemes = $meme->getMemes();
+
+if (isset($_GET['p'])) {
+    $p = $_GET['p'];
+} else {
+    $p = 1;
+}
+
+$start = $meme->start($p);
+
+$resPagination = $meme->pagination($p);
+
 ?>
 
 <!DOCTYPE html>
@@ -24,12 +35,12 @@ $resmemes = $meme->getMemes();
     <div id="container">
         <section id="memes">
             <?php
-            foreach ($resmemes as $arr) {
+            foreach ($resPagination as $arr) {
 
             ?>
                 <div class="card">
                     <div class="img">
-                        <img src="<?= $arr['url'] ?>" alt="">
+                        <img src="<?= $arr['url_picture'] ?>" alt="">
                     </div>
                     <div class="card_action">
                         <div class="likes">
@@ -47,6 +58,23 @@ $resmemes = $meme->getMemes();
 
             ?>
         </section>
+        <div class="pagination">
+            <?php
+                for ($i = 1; $i <= $meme->getTotalPage(); $i++) {
+                    ?>
+                        <a href="index.php?p=<?= $i ?>" class="page" <?php if ($i == $p) echo "class='active'"; ?>><?= $i ?></a>
+                    <?php
+                }
+            ?>
+        </div>
+        <?php
+        // echo "<div class='pagination'>";
+        // for ($i =  1; $i <= $meme->getTotalPage(); $i++) {
+        //     echo "<a href='index.php?p=$i' class='page'>$i</a>";
+        // }
+        // echo "</div>";
+
+        ?>
     </div>
 </body>
 

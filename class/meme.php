@@ -3,6 +3,8 @@ require_once('parent.php');
 
 class Meme extends Koneksi
 {
+    public $perpage = 12;
+
     public function __construct()
     {
         parent::__construct();
@@ -26,5 +28,34 @@ class Meme extends Koneksi
         }
 
         return $memes;
+    }
+
+    public function getTotalData()
+    {
+        $memes = $this->getMemes();
+        return count($memes);
+    }
+
+    public function getTotalPage()
+    {
+        return ceil($this->getTotalData() / $this->perpage);
+    }
+
+    public function start($p)
+    {
+        return ($p - 1) * $this->perpage;
+    }
+
+    public function pagination($p)
+    {
+        $start = $this->start($p);
+        
+        $sql = "SELECT * FROM memes LIMIT ?, ?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param('ii', $start, $this->perpage);
+        $stmt->execute();
+        $res = $stmt->get_result();
+
+        return $res;
     }
 }

@@ -14,7 +14,7 @@ br {
     max-width: 300px;
     min-width: 300px;
     margin: 0 auto;
-    padding: 24px 24px 0px 24px;
+    padding: 24px;
 }
 
 #memes {
@@ -73,6 +73,23 @@ br {
     border-radius: 0px 0px 16px 0px;
 }
 
+.pagination a {
+    float: left;
+    padding: 8px 16px;
+    text-decoration: none;
+}
+
+.pagination a.active {
+    background-color: #252525;
+    color: whitesmoke;
+    border-radius: 8px;
+}
+
+.pagination a:hover:not(.active) {
+    background-color: #ddd;
+    border-radius: 8px;
+}
+
 /* Landscape Mobile Phone and Portrait Tablet */
 @media all and (min-width: 576px) {
     #container {
@@ -91,6 +108,8 @@ br {
         max-width: 100%;
         margin-left: 8px;
         margin-right: 8px;
+        align-self: center;
+        justify-self: center;
     }
 }
 
