@@ -41,14 +41,9 @@ class Meme extends Koneksi
         return ceil($this->getTotalData() / $this->perpage);
     }
 
-    public function start($p)
-    {
-        return ($p - 1) * $this->perpage;
-    }
-
     public function pagination($p)
     {
-        $start = $this->start($p);
+        $start = ($p - 1) * $this->perpage;
         
         $sql = "SELECT * FROM memes LIMIT ?, ?";
         $stmt = $this->con->prepare($sql);

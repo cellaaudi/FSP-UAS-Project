@@ -14,8 +14,6 @@ if (isset($_GET['p'])) {
     $p = 1;
 }
 
-$start = $meme->start($p);
-
 $resPagination = $meme->pagination($p);
 
 ?>
@@ -59,22 +57,16 @@ $resPagination = $meme->pagination($p);
             ?>
         </section>
         <div class="pagination">
+            <a href="index.php?p=1" class="page"><<</a>
             <?php
                 for ($i = 1; $i <= $meme->getTotalPage(); $i++) {
                     ?>
-                        <a href="index.php?p=<?= $i ?>" class="page" <?php if ($i == $p) echo "class='active'"; ?>><?= $i ?></a>
+                        <a href="index.php?p=<?= $i ?>" class="page <?php if ($i == $p) echo "active"; ?>"><?= $i ?></a>
                     <?php
                 }
             ?>
+            <a href="index.php?p=<?= $meme->getTotalPage(); ?>" class="page">>></a>
         </div>
-        <?php
-        // echo "<div class='pagination'>";
-        // for ($i =  1; $i <= $meme->getTotalPage(); $i++) {
-        //     echo "<a href='index.php?p=$i' class='page'>$i</a>";
-        // }
-        // echo "</div>";
-
-        ?>
     </div>
 </body>
 
