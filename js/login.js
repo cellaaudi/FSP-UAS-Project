@@ -1,7 +1,6 @@
 $(document).ready(function () {
+    // Login
     $("#formLogin").submit(function (event) {
-        // alert("test");
-
         event.preventDefault();
 
         var fData = new FormData($("#formLogin")[0]);

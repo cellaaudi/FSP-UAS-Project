@@ -1,8 +1,21 @@
 <?php
-// session_start();
-// if(!isset($_SESSION['user_login'])){
-// 	header("location: login.php");
-// }
+session_start();
+
+if(!isset($_SESSION['user_login'])){
+	header("location: login.php");
+}
+
+if(isset($_GET['do'])){
+    if($_GET['do']=="logout"){
+        unset($_SESSION["user_login"]);
+        session_destroy();
+
+        header('location: login.php');
+    }
+}
+
+$username = $_SESSION['user_login'];
+
 
 require("class/meme.php");
 $meme = new Meme();
@@ -26,11 +39,17 @@ $resPagination = $meme->pagination($p);
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Memes</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="css/index.css">
+    <script type="text/javascript" src="js/jquery-3.6.1.min.js"></script>
 </head>
 
 <body>
     <div id="container">
+        <nav>
+            <div class="hi">Hi, <?= $username ?></div>
+            <div class="out"><a href="" id="logout">Logout</a></div>
+        </nav>
         <section id="memes">
             <?php
             foreach ($resPagination as $arr) {
@@ -42,7 +61,7 @@ $resPagination = $meme->pagination($p);
                     </div>
                     <div class="card_action">
                         <div class="likes">
-                            <img src="assets/icons/heart_outline.svg" alt="">
+                            <a href="" class="like"><img src="assets/icons/heart_outline.svg" alt=""></a>
                             <span><?= $arr['likes'] ?> likes</span>
                         </div>
                         <div class="comments">

@@ -1,4 +1,6 @@
 <?php
+session_start();
+
 require_once('parent.php');
 
 class User extends Koneksi
@@ -21,6 +23,7 @@ class User extends Koneksi
         if ($res->num_rows > 0) {
             if ($row = $res->fetch_assoc()) {
                 if ($password == $row['password']) {
+                    $_SESSION["user_login"] = $username;
                     $status = "Welcome";
                 } else {
                     $status = "User not found";
