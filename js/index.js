@@ -3,7 +3,7 @@ $(document).ready(function () {
 
 	// Initial
 	$.ajax({
-		url: 'pagination_process.php',
+		url: 'php/pagination_process.php',
 		type: 'GET',
 		data: {
 			p : 1
@@ -22,13 +22,13 @@ $(document).ready(function () {
 		if (dataP == '&lt;&lt;') {
 			dataP = 1;
 		} else if (dataP == '&gt;&gt;') {
-			$.post('pagination_lastpage.php', {}).done(function(data) {
+			$.post('php/pagination_lastpage.php', {}).done(function(data) {
 				dataP = parseInt(data, 10);
             });
 		}
 
 		$.ajax({
-			url: 'pagination_process.php',
+			url: 'php/pagination_process.php',
 			type: 'GET',
 			data: {
 				p : dataP
@@ -42,18 +42,32 @@ $(document).ready(function () {
 		$(this).addClass('page active');
 	});
 
-	// Like Button
-	$(".like").click(function() {
-		// event.preventDefault();
+	// Like
+	$("#memes").on('click', '.like', function (event) {
+		event.preventDefault();
 
-		alert("like");
+		// alert("like");
+
+		var meme_id = $(this).parent().parent().parent().attr('id');
+		var username = $("#session_username").val();
+
+		$.post('php/like_process.php', {
+			meme_id:meme_id,
+			username:username
+		}).done(function(data) {
+			// alert(data);
+
+			// $(this).('.heart').attr('src', 'assets/icons/heart_fill.svg');
+			// $.post('php/')
+		})
+		// alert (username);
 	});
 
 	// Logout
 	$("#logout").click(function (event) {
 		event.preventDefault();
 
-		$.post('logout_process.php', {}).done(function(data) {
+		$.post('php/logout_process.php', {}).done(function(data) {
 			location.replace('index.php');
 		});
 	});

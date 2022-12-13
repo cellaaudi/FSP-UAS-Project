@@ -7,7 +7,7 @@ $(document).ready(function () {
 
         $.ajax({
             // URL diganti ke hosting (https://www.cellaketinnopen.000webhostapp.com/login_process.php)
-            url: 'login_process.php',
+            url: 'php/login_process.php',
         	type: 'POST',
         	data: fData,
         	async: false, 
