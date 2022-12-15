@@ -4,7 +4,7 @@ $(document).ready(function () {
 
 	// Initial
 	$.ajax({
-		url: 'php/pagination_process.php',
+		url: 'https://cellaketinnopen.000webhostapp.com/php/pagination_process.php',
 		type: 'GET',
 		data: {
 			p: 1,
@@ -22,7 +22,7 @@ $(document).ready(function () {
 		dataP = $(this).html();
 
 		$.ajax({
-			url: 'php/pagination_process.php',
+			url: 'https://cellaketinnopen.000webhostapp.com/php/pagination_process.php',
 			type: 'GET',
 			data: {
 				p: dataP,
@@ -43,7 +43,7 @@ $(document).ready(function () {
 
 		var meme_id = $(this).parent().parent().parent().attr('id');
 
-		$.post('php/like_process.php', {
+		$.post('https://cellaketinnopen.000webhostapp.com/php/like_process.php', {
 			meme_id: meme_id,
 			username: username
 		}).done(function (data) {
@@ -55,7 +55,7 @@ $(document).ready(function () {
 	$("#logout").click(function (event) {
 		event.preventDefault();
 
-		$.post('php/logout_process.php', {}).done(function (data) {
+		$.post('https://cellaketinnopen.000webhostapp.com/php/logout_process.php', {}).done(function (data) {
 			location.replace('index.php');
 		});
 	});
@@ -63,7 +63,7 @@ $(document).ready(function () {
 	function pagination() {
 		dataP = $('.page').html();
 		$.ajax({
-			url: 'php/pagination_process.php',
+			url: 'https://cellaketinnopen.000webhostapp.com/php/pagination_process.php',
 			type: 'GET',
 			data: {
 				p: dataP,
