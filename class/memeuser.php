@@ -20,6 +20,16 @@ class Memeuser extends Koneksi
         } else {
             $arr = ['result' => 'failed', 'error' => $this->con->error];
         }
+
+        return $arr;
+    }
+
+    public function updateLike($meme_id, $liked)
+    {
+        $sql = "UPDATE memes SET likes=? WHERE id=?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("ii", $liked, $meme_id);
+        $stmt->execute();
     }
 
     public function readLike($meme_id, $username)

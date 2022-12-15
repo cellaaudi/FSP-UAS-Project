@@ -30,6 +30,29 @@ class Meme extends Koneksi
         return $memes;
     }
 
+    public function getMemesbyID($meme_id)
+    {
+        $memes = [];
+
+        $sql = "SELECT * FROM memes WHERE id=?";
+        $stmt = $this->con->prepare($sql);
+        $stmt->bind_param("i", $meme_id);
+        $stmt->execute();
+        $res = $stmt->get_result();
+
+        if ($res->num_rows > 0) {
+            while ($row = $res->fetch_assoc()) {
+                $id = $row['id'];
+                $url = $row['url_picture'];
+                $likes = $row['likes'];
+    
+                $memes[] = array("id" => $id, "url" => $url, "likes" => $likes);
+            }
+        }
+
+        return $memes;
+    }
+
     public function getTotalData()
     {
         $memes = $this->getMemes();

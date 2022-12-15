@@ -1,14 +1,16 @@
 $(document).ready(function () {
 	var dataP = null;
+	var username = $("#session_username").val();
 
 	// Initial
 	$.ajax({
 		url: 'php/pagination_process.php',
 		type: 'GET',
 		data: {
-			p : 1
+			p: 1,
+			username: username
 		},
-		success: function(data) {
+		success: function (data) {
 			$("#memes").html(data);
 		}
 	});
@@ -19,23 +21,16 @@ $(document).ready(function () {
 
 		dataP = $(this).html();
 
-		if (dataP == '&lt;&lt;') {
-			dataP = 1;
-		} else if (dataP == '&gt;&gt;') {
-			$.post('php/pagination_lastpage.php', {}).done(function(data) {
-				dataP = parseInt(data, 10);
-            });
-		}
-
 		$.ajax({
 			url: 'php/pagination_process.php',
 			type: 'GET',
 			data: {
-				p : dataP
+				p: dataP,
+				username: username
 			},
-        	success: function(data) {
-                $("#memes").html(data);
-        	}
+			success: function (data) {
+				$("#memes").html(data);
+			}
 		});
 
 		$(".page").removeClass('page active');
@@ -46,29 +41,37 @@ $(document).ready(function () {
 	$("#memes").on('click', '.like', function (event) {
 		event.preventDefault();
 
-		// alert("like");
-
 		var meme_id = $(this).parent().parent().parent().attr('id');
-		var username = $("#session_username").val();
 
 		$.post('php/like_process.php', {
-			meme_id:meme_id,
-			username:username
-		}).done(function(data) {
-			// alert(data);
-
-			// $(this).('.heart').attr('src', 'assets/icons/heart_fill.svg');
-			// $.post('php/')
+			meme_id: meme_id,
+			username: username
+		}).done(function (data) {
+			pagination();
 		})
-		// alert (username);
 	});
 
 	// Logout
 	$("#logout").click(function (event) {
 		event.preventDefault();
 
-		$.post('php/logout_process.php', {}).done(function(data) {
+		$.post('php/logout_process.php', {}).done(function (data) {
 			location.replace('index.php');
 		});
 	});
+
+	function pagination() {
+		dataP = $('.page').html();
+		$.ajax({
+			url: 'php/pagination_process.php',
+			type: 'GET',
+			data: {
+				p: dataP,
+				username: username
+			},
+			success: function (data) {
+				$("#memes").html(data);
+			}
+		});
+	}
 });
